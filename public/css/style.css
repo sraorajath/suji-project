@@ -3,7 +3,13 @@ body {
   font-family: 'Open Sans', sans-serif;
   background: #f4f4f4;
 }
-
+.navbar-section {
+	padding: 0;
+	margin: 0;
+}
+.navbar-section .navbar-nav li {
+	width: 500px;
+}
 .width100 {
   width: 100%;
 }
@@ -64,4 +70,13 @@ body {
   margin-top: 45%;
   margin-left: 45%;
   color: #70c3f3;
+}
+#checkboxes label {
+	height: 270px;
+}
+.enter_quantity {
+	display: none;
+}
+.enter_quantity input, .enter_quantity button {
+	width: 100%;
 }
