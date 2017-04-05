@@ -1,0 +1,22 @@
+<div class="container" ng-init="getAllProducts()">
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-3 col-mgbtm" ng-repeat="product in products">
+      <div id="checkboxes">
+        <input type="checkbox" name="rGroup" class="check_cat" value="Adventure Sports" id="r1"/>
+        <div class="check_overlay">
+					<i class="fa fa-check-circle"></i>
+				</div>
+        <label class="whatever" for="r1">
+					<img ng-src="{{product.image}}" class=" img-responsive width100" />
+					<div class="row">
+						<div class="col-md-12">
+              <div class="check_details">
+                <span ng-bind="product.name"></span>
+              </div>
+            </div>
+					</div><!--inner row end-->
+				</label>
+      </div><!-- end #checkboxes -->
+    </div><!-- end col-xs-* -->
+  </div>
+</div>

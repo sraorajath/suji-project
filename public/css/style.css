@@ -1,0 +1,67 @@
+@import "https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700|Open+Sans:300,400,600,700";
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: #f4f4f4;
+}
+
+.width100 {
+  width: 100%;
+}
+.col-mgbtm {
+	margin-bottom: 25px;
+}
+#checkboxes {
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
+}
+#checkboxes .whatever {
+  background: white;
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+  width: 100%;
+}
+#checkboxes img {
+  margin-bottom: 9px;
+}
+#checkboxes input[type=checkbox] {
+  display: none;
+}
+#checkboxes .check_details {
+  color: #4a4a4a;
+}
+#checkboxes .check_details i span {
+  display: inline-block;
+  margin-left: 3px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+}
+#checkboxes .check_name_div {
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+#checkboxes .check_overlay {
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  position: absolute;
+  height: 84%;
+  top: 0;
+  left: 15px;
+  overflow: hidden;
+  right: 15px;
+  display: none;
+}
+#checkboxes .check_overlay i {
+  font-size: 28px;
+  margin-top: 45%;
+  margin-left: 45%;
+  color: #70c3f3;
+}
