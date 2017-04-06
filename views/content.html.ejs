@@ -5,21 +5,21 @@
         <a class="navbar-brand" href="#">WebSiteName</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a><input type="text" class="form-control" id="search" name="search" placeholder="Search by Name" /></a></li>
+        <li class="active"><a><input type="text" class="form-control" id="search" ng-model="search" name="search" placeholder="Search by Name" /></a></li>
       </ul>
     </div>
   </nav>
 </div>
 <div class="container" ng-init="getAllProducts()">
   <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-3 col-mgbtm" ng-repeat="product in products">
+    <div class="col-xs-6 col-sm-6 col-md-3 col-mgbtm" ng-repeat="product in products | filter:search">
       <div id="checkboxes" data-value="{{product._id}}">
         <input type="checkbox" name="rGroup" class="check_cat" value="Adventure Sports" id="r1"/>
         <div class="check_overlay">
 					<i class="fa fa-check-circle"></i>
 				</div>
         <label class="whatever" for="r1">
-					<img ng-src="{{product.image}}" class=" img-responsive width100" />
+					<img ng-src="{{product.image}}" class="img-responsive width100" />
 					<div class="row product-name">
 						<div class="col-md-12">
               <div class="check_details">

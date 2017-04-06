@@ -7,9 +7,9 @@ body {
 	padding: 0;
 	margin: 0;
 }
-.navbar-section .navbar-nav li {
+/*.navbar-section .navbar-nav li {
 	width: 500px;
-}
+}*/
 .width100 {
   width: 100%;
 }
@@ -70,6 +70,12 @@ body {
   margin-top: 45%;
   margin-left: 45%;
   color: #70c3f3;
+}
+@media screen and (max-width: 500px) {
+  .cat_check .col-xs-6 {
+    float: none;
+    width: 100%;
+  }
 }
 #checkboxes label {
 	height: 270px;

@@ -10,8 +10,7 @@ app.config(function($urlRouterProvider, $stateProvider) {
   $urlRouterProvider.otherwise('/content')
 })
 app.controller('contentController', function($scope, $location, $http, $state) {
-  var new_products = []
-
+  console.log(JSON.parse(localStorage.getItem('session')))
   $(document).on('click', '#checkboxes label', function() {
     $(this).prevUntil("input").prop('checked', true);
     $(this).prev().show();
@@ -42,42 +41,35 @@ app.controller('contentController', function($scope, $location, $http, $state) {
     const data = {
       quantity: quantity
     }
+    const selected_data = {
+      productId: productId,
+      quantity: quantity
+    }
+    SaveDataToLocalStorage(selected_data)
     $http.put('/api/updateProductById/' + productId, data)
       .then(function(res) {
         if(res.data.message == 'success') {
-          new_products.push(res.data.data)
           $('#checkboxes').find('.enter_quantity').css('display', 'none')
-          $state.reload()
+          $scope.getAllProducts()
         }
       })
       .catch(function(err) {
         console.log(err)
       })
   }
-
-  $('#search').keyup(function() {
-    const result = search2($scope.products, $(this).val())
-    $scope.products = result
-  })
-
-  function search2(source, name) {
-    var results = [];
-    var index;
-    var entry;
-    name = name.toUpperCase();
-    for (index = 0; index < source.length; ++index) {
-      entry = source[index];
-      if (entry.name.toUpperCase().indexOf(name) !== -1) {
-        results.push(entry);
-      }
-    }
-    return results;
-  }
-
-  // var search1 = function(){
-  //   var searchVal = document.getElementById("contact-serach").value;
-  //   var results = search2($scope.products);
-  //   $scope.products = reault
-  // }
-
 })
+
+function SaveDataToLocalStorage(data) {
+  let temp = []
+  temp = JSON.parse(localStorage.getItem('session'))
+  if(temp == null) {
+    temp = []
+    temp.push(data)
+    console.log(temp)
+    localStorage.setItem('session', JSON.stringify(temp));
+  } else {
+    temp.push(data)
+    console.log(temp)
+    localStorage.setItem('session', JSON.stringify(temp));
+  }
+}
