@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row family-packs tab-pane fade in active" ng-init="getAllProducts()">
+    <div class="col-xs-6 col-sm-6 col-md-3 col-mgbtm" ng-repeat="product in products | filter:search">
+      <div id="checkboxes" data-value="{{product._id}}">
+        <input type="checkbox" name="rGroup" class="check_cat" value="Adventure Sports" id="r1"/>
+        <div class="check_overlay">
+          <i class="fa fa-check-circle"></i>
+        </div>
+        <label class="whatever" for="r1">
+          <img ng-src="{{product.image}}" class="img-responsive width100" />
+          <div class="row product-name">
+            <div class="col-md-12">
+              <div class="check_details">
+                <span ng-bind="product.name"></span>
+                <span ng-bind="product.quantity"></span>
+              </div>
+            </div>
+          </div><!--inner row end-->
+          <div class="row enter_quantity">
+            <div class="col-md-6">
+              <input type="text" class="form-control" ng-model="quantity" name="quantity" Placeholder="Quentity" />
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-success" ng-click="save(product, quantity)">Save</button>
+            </div>
+          </div>
+        </label>
+      </div><!-- end #checkboxes -->
+    </div><!-- end col-xs-* -->
+  </div>
+</div>

@@ -1,5 +1,5 @@
-<div class="navbar-section">
-  <nav class="navbar navbar-default">
+<div class="navbar-section" ng-init="getLoacalstorageValues()">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">WebSiteName</a>
@@ -7,37 +7,15 @@
       <ul class="nav navbar-nav">
         <li class="active"><a><input type="text" class="form-control" id="search" ng-model="search" name="search" placeholder="Search by Name" /></a></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right" ng-if="valueExists == true">
+        <li><a><button class="btn btn-info" ng-click="generateBill()">Generate Bill</button></a></li>
+      </ul>
     </div>
   </nav>
 </div>
-<div class="container" ng-init="getAllProducts()">
-  <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-3 col-mgbtm" ng-repeat="product in products | filter:search">
-      <div id="checkboxes" data-value="{{product._id}}">
-        <input type="checkbox" name="rGroup" class="check_cat" value="Adventure Sports" id="r1"/>
-        <div class="check_overlay">
-					<i class="fa fa-check-circle"></i>
-				</div>
-        <label class="whatever" for="r1">
-					<img ng-src="{{product.image}}" class="img-responsive width100" />
-					<div class="row product-name">
-						<div class="col-md-12">
-              <div class="check_details">
-                <span ng-bind="product.name"></span>
-                <span ng-bind="product.quantity"></span>
-              </div>
-            </div>
-					</div><!--inner row end-->
-          <div class="row enter_quantity">
-            <div class="col-md-6">
-              <input type="text" class="form-control" ng-model="quantity" name="quantity" Placeholder="Quentity" />
-            </div>
-            <div class="col-md-6">
-              <button class="btn btn-success" ng-click="save(product._id, quantity)">Save</button>
-            </div>
-          </div>
-				</label>
-      </div><!-- end #checkboxes -->
-    </div><!-- end col-xs-* -->
-  </div>
+<div class="container content-section">
+  <ul class="nav nav-tabs">
+    <li ng-repeat="tab in tabs" ng-class="{active:isActiveTab(tab.url)}"><a ui-sref="{{tab.url}}" ng-bind="tab.title"></a></li>
+  </ul>
+  <div ui-view></div>
 </div>

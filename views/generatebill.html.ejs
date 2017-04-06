@@ -1,0 +1,21 @@
+<div class="container jumbotron" ng-init="getSelectedItems()">
+  <table  class="table table-striped" id="printThisElement">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="(key, item) in selectedItem">
+        <th ng-bind="key + 1"></th>
+        <td ng-bind="item.product.name"></td>
+        <td ng-bind="item.quantity"></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="btn btn-info" ng-click="print()">Print</div>
+</div>

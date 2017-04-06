@@ -1,15 +1,22 @@
 @import "https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700|Open+Sans:300,400,600,700";
 body {
   font-family: 'Open Sans', sans-serif;
-  background: #f4f4f4;
+  /*background: #f4f4f4;*/
 }
 .navbar-section {
 	padding: 0;
-	margin: 0;
+}
+.content-section {
+  margin-top: 100px;
 }
 /*.navbar-section .navbar-nav li {
 	width: 500px;
 }*/
+.family-packs {
+  /*background: #fff;*/
+  padding-top: 15px;
+}
+
 .width100 {
   width: 100%;
 }
