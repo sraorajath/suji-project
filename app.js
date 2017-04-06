@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
   res.render('index.html.ejs')
 })
 
-app.listen(8080, function() {
+app.listen(3000, function() {
   console.log("server started")
 })
 
