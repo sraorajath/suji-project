@@ -85,7 +85,7 @@ body {
   }
 }
 #checkboxes label {
-	height: 270px;
+	height: 290px;
 }
 @media screen and (max-width: 500px) {
   #checkboxes label {

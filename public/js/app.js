@@ -128,9 +128,17 @@ app.controller('familyPackController', function($scope, $location, $http, $state
   }
 
   $scope.save = function(product, quantity) {
-    updateQuantity(product, quantity, $http).then(function(res) {
-      $scope.getAllProducts()
-    })
+    if(angular.isNumber(quantity)) {
+      updateQuantity(product, quantity, $http).then(function(res) {
+        $scope.getAllProducts()
+      }) 
+    } else {
+      $scope.notNumber = true
+      $scope.for = product._id
+      setTimeout(function() {
+        $('#nmessage').fadeOut('fast');
+      }, 3000); 
+    }
   }
 })
 

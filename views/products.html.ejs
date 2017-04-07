@@ -24,6 +24,9 @@
               <button class="btn btn-success" ng-click="save(product, quantity)">Save</button>
             </div>
           </div>
+          <div id="nmessage" ng-if="notNumber == true && for == product._id">
+            <span class="alert-danger">Enter Number</span>
+          </div>
         </label>
       </div><!-- end #checkboxes -->
     </div><!-- end col-xs-* -->
