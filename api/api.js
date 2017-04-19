@@ -36,4 +36,27 @@ app.put('/updateProductById/:productId', _wrap(function *(req, res) {
   }
 }))
 
+app.post('/insertSelectedProducts', _wrap(function *(req, res) {
+
+}))
+
+app.get('/getAllShops', _wrap(function *(req, res) {
+  const result = yield ProductServices.getAllShops()
+  if(result != null) {
+    res.send({
+      status: 200,
+      message: 'success',
+      data: result
+    })
+  }
+}))
+
+app.post('/addNewShop', _wrap(function *(req, res) {
+  const result = yield ProductServices.addNewShop(req.body)
+  res.send({
+    status: 200,
+    message: 'success'
+  })
+}))
+
 module.exports = app

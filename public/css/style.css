@@ -102,3 +102,6 @@ body {
 .enter_quantity input, .enter_quantity button {
 	width: 100%;
 }
+.table tr td i {
+  cursor: pointer;
+}

@@ -9,3 +9,18 @@ const products = mongoose.Schema({
 })
 
 mongoose.model('Products', products)
+
+const selectedProducts = mongoose.Schema({
+  shopname: mongoose.Schema.Types.String,
+  selectedProducts: mongoose.Schema.Types.Array,
+  createdDate: mongoose.Schema.Types.Date
+})
+
+mongoose.model('ShopProducts', selectedProducts)
+
+const shops = mongoose.Schema({
+  shopname: mongoose.Schema.Types.String,
+  address: mongoose.Schema.Types.String,
+})
+
+mongoose.model('Shops', shops)

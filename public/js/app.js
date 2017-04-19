@@ -2,6 +2,11 @@ const app = angular.module('myApp', ['ui.router'])
 
 app.config(function($urlRouterProvider, $stateProvider) {
   $stateProvider
+    .state('shopname', {
+      url: '/shopname',
+      templateUrl: '/views/shopname.html.ejs',
+      controller: 'shopnameController'
+    })
     .state('icecream', {
       url: '/icecream',
       templateUrl: '/views/content.html.ejs',
@@ -47,6 +52,11 @@ app.config(function($urlRouterProvider, $stateProvider) {
       templateUrl: '/views/generatebill.html.ejs',
       controller: 'generateBillController'
     })
+    .state('addShop', {
+      url: '/addShops',
+      templateUrl: '/views/addShop.html.ejs',
+      controller: 'addShopController'
+    })
   $urlRouterProvider.otherwise('/icecream')
 })
 app.controller('contentController', function($scope, $location, $http) {
@@ -60,6 +70,10 @@ app.controller('contentController', function($scope, $location, $http) {
 
   $scope.generateBill = function() {
     $location.path('/generateBill')
+  }
+
+  $scope.addShops = function() {
+    $location.path('/addShops')
   }
 
   $scope.tabs = [{
@@ -90,7 +104,7 @@ app.controller('contentController', function($scope, $location, $http) {
   }
 
   $scope.isActiveTab = function(tabUrl) {
-    if($location.path() == '/icecream/family-packs') {
+    if($location.path() == '/icecream' || $location.path() == '/icecream/family-packs') {
       return tabUrl == "icecream.default"
     } if($location.path() == '/icecream/dessert') {
       return tabUrl == "icecream.dessert"
@@ -123,14 +137,17 @@ app.controller('familyPackController', function($scope, $location, $http, $state
 
   $scope.getAllProducts = function() {
     getProductByType($http, "familypack").then(function(res) {
+      console.log(res)
       $scope.products = res
     })
   }
 
   $scope.save = function(product, quantity) {
-    if(angular.isNumber(quantity)) {
-      updateQuantity(product, quantity, $http).then(function(res) {
+    if(!isNaN(quantity)) {
+      updateQuantity(product, quantity, $http, $scope.shopname).then(function(res) {
         $scope.getAllProducts()
+        $scope.submit = 1
+        // $state.reload()
       }) 
     } else {
       $scope.notNumber = true
@@ -213,8 +230,44 @@ app.controller('generateBillController', function($scope, $location, $http) {
       })
   }
 
+  $scope.getAllShops = function() {
+    $http.get('/api/getAllShops')
+      .then(function(res) {
+        $scope.shops = res.data.data
+      })
+      .catch(function(err) {
+        console.log
+      })
+  }
+
+  $scope.remove = function(data) {
+    console.log(data.product._id)
+  }
+
   $scope.print = function() {
     printData()
+  }
+
+  $scope.saveData = function(selectedItem) {
+    console.log($scope.shopname, selectedItem)
+  }
+})
+
+app.controller('addShopController', function($scope, $http, $location) {
+  $scope.addNewShop = function() {
+    const data = {
+      shopname: $scope.shopname,
+      address: $scope.shopaddress
+    }
+    $http.post('/api/addNewShop', data)
+      .then(function(res) {
+        if(res.data.message == 'success') {
+          $location.path('/')
+        }
+      })
+      .catch(function(err) {
+        console.log(err)
+      })
   }
 })
 
@@ -230,7 +283,8 @@ function getProductByType($http, type) {
     })
 }
 
-function updateQuantity(product, quantity, $http) {
+function updateQuantity(product, quantity, $http, shopname) {
+  console.log(shopname)
   const data = {
     quantity: quantity
   }
@@ -265,9 +319,10 @@ function SaveDataToLocalStorage(data) {
 }
 
 function printData() {
-   var divToPrint = document.getElementById("printThisElement");
-   newWin= window.open("");
-   newWin.document.write(divToPrint.outerHTML);
-   newWin.print();
-   newWin.close();
+  var originalContents = $("body").html();
+  var printContents = $("#printThisElement").html();
+  $("body").html(printContents);
+  window.print();
+  $("body").html(originalContents);
+  return false;
 }
